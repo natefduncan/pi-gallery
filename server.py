@@ -5,12 +5,12 @@ app = Flask(__name__)
 import random
 
 from config import SERVER_PORT
-from nextcloud import get_random_photo
+from nextcloud import get_random_photo_path
 
 
 @app.route("/random-photo")
 def gallery():
-    image_binary = open(get_random_photo(),"rb")
+    image_binary = open(get_random_photo_path(),"rb")
     return send_file(
         io.BytesIO(image_binary),
         mimetype="image/jpeg",
