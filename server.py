@@ -14,7 +14,7 @@ def gallery():
     return send_file(
         get_random_photo_path(),
         mimetype="image/jpeg",
-        as_attachment=False,
+        as_attachment=True,
     )
 
 if __name__ == "__main__":
