@@ -11,9 +11,8 @@ from nextcloud import get_random_photo_path
 
 @app.route("/random-photo")
 def gallery():
-    image_binary = open(get_random_photo_path(),"rb")
     return send_file(
-        io.BytesIO(image_binary),
+        get_random_photo_path(),
         mimetype="image/jpeg",
         as_attachment=False,
     )
