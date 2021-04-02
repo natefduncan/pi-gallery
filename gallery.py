@@ -79,18 +79,18 @@ def PIL_to_canvas(pilImage):
         pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(w/2,h/2,image=image)
+    canvas.update()
 
-def image_loop(delay=5):
+def image_loop(delay=1):
     try:
         print("Getting image")
         img = get_image()
         img = img.rotate(270, Image.NEAREST, expand = 1)
         print("PIL to canvas")
         PIL_to_canvas(img)
+        time.sleep(5)
         print("After")
-        canvas.update()
-        canvas.after(delay*1000, image_loop)
-        canvas.update()
+        canvas.after(0, image_loop)
     except KeyboardInterrupt: 
         quit()
 
