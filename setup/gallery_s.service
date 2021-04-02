@@ -1,0 +1,11 @@
+[Unit]
+Description=Gallery server - send images
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/home/ubuntu/pi-gallery/venv/bin/python /home/ubuntu/pi-gallery/server.py
+
+[Install]
+WantedBy=multi-user.target
