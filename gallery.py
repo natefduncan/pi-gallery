@@ -62,13 +62,13 @@ class MySlideShow(tk.Toplevel):
         
         # create new image 
         imgWidth, imgHeight = image.size
-        if imgWidth > w or imgHeight > h:
-            ratio = min(w/imgWidth, h/imgHeight)
+        if imgWidth > self.w or imgHeight > self.h:
+            ratio = min(self.w/imgWidth, self.h/imgHeight)
             imgWidth = int(imgWidth*ratio)
             imgHeight = int(imgHeight*ratio)
             pilImage = image.resize((imgWidth,imgHeight), Image.ANTIALIAS)
         image = ImageTk.PhotoImage(image)
-        imagesprite = self.canvas.create_image(w/2,h/2,image=image)
+        imagesprite = self.canvas.create_image(self.w/2,self.h/2,image=image)
 
 def create_canvas():
     root = tkinter.Tk()
