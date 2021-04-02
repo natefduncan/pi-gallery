@@ -110,7 +110,7 @@ if __name__=="__main__":
     canvas = tk.Canvas(root,width=999,height=999)
     canvas.pack()
     pilImage = Image.open("temp.jpg")
-    image = tk.ImageTk.PhotoImage(pilImage)
+    image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(400,400,image=image)
     root.mainloop()
     '''
