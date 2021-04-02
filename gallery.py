@@ -71,7 +71,6 @@ class MySlideShow(tk.Toplevel):
         imagesprite = canvas.create_image(self.w/2,self.h/2,image=image)
 
 def PIL_to_canvas(pilImage):
-    root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
     root.overrideredirect(1)
     root.geometry("%dx%d+0+0" % (w, h))
@@ -88,22 +87,28 @@ def PIL_to_canvas(pilImage):
         pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(w/2,h/2,image=image)
-    root.mainloop()
 
-def image_loop():
-    while True:
-        try:
-            print("Getting image")
-            img = get_image()
-            img = img.rotate(270, Image.NEAREST, expand = 1)
-            print("PIL to canvas")
-            PIL_to_canvas(img)
-            print("Sleep for 5.")
-            time.sleep(5)
-        except KeyboardInterrupt:
-            break
-        except Exception as e:
-            print(e)
+def image_loop(delay=5):
+    try:
+        print("Getting image")
+        img = get_image()
+        img = img.rotate(270, Image.NEAREST, expand = 1)
+        print("PIL to canvas")
+        PIL_to_canvas(root, img)
+        print("After")
+        tk.after(delay*1000, image_loop)
+    except KeyboardInterrupt:
+        break
+    except Exception as e:
+        print(e)
 
 if __name__=="__main__":
+    root = tk.Tk()
     image_loop()
+    root.mainloop()
+
+    '''
+    slideShow = HiddenRoot()
+    slideShow.bind("<Escape>", lambda e: slideShow.destroy())  # exit on esc
+    slideShow.mainloop()
+    '''
