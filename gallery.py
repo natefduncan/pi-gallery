@@ -79,7 +79,6 @@ def PIL_to_canvas(pilImage):
         pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(w/2,h/2,image=image)
-    root.mainloop()
 
 def image_loop(delay=5):
     try:
@@ -89,7 +88,8 @@ def image_loop(delay=5):
         print("PIL to canvas")
         PIL_to_canvas(img)
         print("After")
-        root.after(delay*1000, image_loop)
+        canvas.after(delay*1000, image_loop)
+        canvas.update()
     except KeyboardInterrupt: 
         quit()
 
@@ -111,12 +111,11 @@ class SlideShow:
         image = tk.PhotoImage("temp.jpg")
         imagesprite = canvas.create_image(w/2,h/2,image=image)        
         root.imagesprite = imagesprite #garbage collection
-        #canvas.after(delay*1000, self.showImage) 
+        canvas.after(delay*1000, self.showImage) 
        
 if __name__=="__main__":
     root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
-    print([w, h])
     root.overrideredirect(1)
     root.geometry("%dx%d+0+0" % (w-200, h-200))
     root.focus_set()    
