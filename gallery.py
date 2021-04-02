@@ -55,7 +55,7 @@ class MySlideShow(tk.Toplevel):
     def showImage(self, image):
         #Canvas
         self.focus_set()
-        self.canvas = tkinter.Canvas(self, width=self.w, height=self.h)
+        self.canvas = tk.Canvas(self, width=self.w, height=self.h)
         self.canvas.pack()
         self.canvas.configure(background='black')
         
@@ -76,7 +76,7 @@ def create_canvas():
     root.geometry("%dx%d+0+0" % (w, h))
     root.focus_set()    
     root.bind("<Escape>", lambda e: (e.widget.withdraw(), e.widget.quit()))
-    canvas = tkinter.Canvas(root,width=w,height=h)
+    canvas = tk.Canvas(root,width=w,height=h)
     canvas.pack()
     canvas.configure(background='black')
     return [canvas, w, h]
