@@ -97,7 +97,7 @@ def image_loop():
             img = get_image()
             img = img.rotate(270, Image.NEAREST, expand = 1)
             print("PIL to canvas")
-            PIL_to_canvas(img, canvas, w, h)
+            PIL_to_canvas(img)
             print("Sleep for 5.")
             time.sleep(5)
         except KeyboardInterrupt:
