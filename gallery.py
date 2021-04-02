@@ -107,14 +107,14 @@ class SlideShow:
     def showImage(self, delay=5):
         img = get_image()
         img = img.rotate(270, Image.NEAREST, expand = 1)
-        imgWidth, imgHeight = pilImage.size
+        imgWidth, imgHeight = img.size
         if imgWidth > w or imgHeight > h:
             ratio = min(w/imgWidth, h/imgHeight)
             imgWidth = int(imgWidth*ratio)
             imgHeight = int(imgHeight*ratio)
-            pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
-        image = ImageTk.PhotoImage(pilImage)
-        imagesprite = canvas.create_image(w/2,h/2,image=image)        
+            pilImage = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
+        image = ImageTk.PhotoImage(img)
+        imagesprite = self.canvas.create_image(w/2,h/2,image=image)        
         self.canvas.after(delay*1000, self.showImage) 
        
 if __name__=="__main__":
