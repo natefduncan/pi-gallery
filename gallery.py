@@ -61,14 +61,13 @@ class MySlideShow(tk.Toplevel):
                     self.imageList.append(img_path)
 
     def startSlideShow(self, delay=10): #delay in seconds
-        get_image()
-        self.showImage("temp.jpg")
+        img = get_image()
+        img = img.rotate(270, Image.NEAREST, expand = 1)
+        self.showImage(img)
         #its like a callback function after n seconds (cycle through pics)
         self.after(delay*1000, self.startSlideShow)
 
-    def showImage(self, filename):
-        image = Image.open(filename)  
-
+    def showImage(self, image):
         img_w, img_h = image.size
         scr_w, scr_h = self.winfo_screenwidth(), self.winfo_screenheight()
         width, height = min(scr_w, img_w), min(scr_h, img_h)
