@@ -93,7 +93,7 @@ def image_loop(delay=5):
     img = get_image()
     img = img.rotate(270, Image.NEAREST, expand = 1)
     print("PIL to canvas")
-    PIL_to_canvas(root, img)
+    PIL_to_canvas(img)
     print("After")
     tk.after(delay*1000, image_loop)
 
