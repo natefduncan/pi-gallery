@@ -115,18 +115,14 @@ class SlideShow:
             pilImage = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
         image = ImageTk.PhotoImage(img)
         imagesprite = self.canvas.create_image(w/2,h/2,image=image)        
-        self.canvas.after(delay*1000, self.showImage) 
+        #self.canvas.after(delay*1000, self.showImage) 
        
 if __name__=="__main__":
-    '''
-    root = tk.Tk()
-    image_loop()
-    root.mainloop()
-    '''
     root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
+    print([w, h])
     root.overrideredirect(1)
-    root.geometry("%dx%d+0+0" % (w, h))
+    root.geometry("%dx%d+0+0" % (w-200, h-200))
     root.focus_set()    
     root.bind("<Escape>", lambda e: (e.widget.withdraw(), e.widget.quit()))
 
