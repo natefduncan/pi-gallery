@@ -102,6 +102,9 @@ def image_loop(delay=5):
 
 class SlideShow:
 
+    def __init__(self):
+        pass
+
     def showImage(self, delay=5):
         img = get_image()
         img = img.rotate(270, Image.NEAREST, expand = 1)
