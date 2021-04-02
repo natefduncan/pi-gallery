@@ -23,7 +23,7 @@ class HiddenRoot(tk.Tk):
         #as small as possible but still "focused"
         #enabling us to use the binding on <esc>
         self.w, self.h = self.winfo_screenwidth(), self.winfo_screenheight()
-        self.geometry("%dx%d+0+0" % (w, h))
+        self.geometry("%dx%d+0+0" % (self.w, self.h))
 
         self.window = MySlideShow(self)
         self.window.startSlideShow()
