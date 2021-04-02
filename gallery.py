@@ -125,6 +125,10 @@ if __name__=="__main__":
     '''
     root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
+    root.overrideredirect(1)
+    root.geometry("%dx%d+0+0" % (w, h))
+    root.focus_set()    
+    root.bind("<Escape>", lambda e: (e.widget.withdraw(), e.widget.quit()))
 
     canvas = tk.Canvas(root,width=w,height=h)
     canvas.pack()
