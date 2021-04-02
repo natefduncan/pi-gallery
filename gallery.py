@@ -34,6 +34,7 @@ class MySlideShow(tk.Toplevel):
         tk.Toplevel.__init__(self, *args, **kwargs)
         #remove window decorations 
         self.overrideredirect(True)
+        self.w, self.h = self.winfo_screenwidth(), self.winfo_screenheight()
 
         #save reference to photo so that garbage collection
         #does not clear image variable in show_image()
