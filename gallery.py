@@ -40,6 +40,8 @@ def image_loop(delay=1):
         image_loop()
     except KeyboardInterrupt: 
         quit()
+    except Exception as e:
+        print(e)
 
 if __name__=="__main__":
     root = tk.Tk()
