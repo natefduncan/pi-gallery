@@ -22,7 +22,7 @@ class HiddenRoot(tk.Tk):
         #hackish way, essentially makes root window
         #as small as possible but still "focused"
         #enabling us to use the binding on <esc>
-        self.w, self.h = self.winfo_screenwidth(), root.winfo_screenheight()
+        self.w, self.h = self.winfo_screenwidth(), self.winfo_screenheight()
         self.geometry("%dx%d+0+0" % (w, h))
 
         self.window = MySlideShow(self)
