@@ -104,6 +104,17 @@ def image_loop():
             break
 
 if __name__=="__main__":
+
+    root = tk.Tk()
+    root.geometry('1000x1000')
+    canvas = tk.Canvas(root,width=999,height=999)
+    canvas.pack()
+    pilImage = Image.open("temp.jpg")
+    image = tk.ImageTk.PhotoImage(pilImage)
+    imagesprite = canvas.create_image(400,400,image=image)
+    root.mainloop()
+    '''
     slideShow = HiddenRoot()
     slideShow.bind("<Escape>", lambda e: slideShow.destroy())  # exit on esc
     slideShow.mainloop()
+    '''
