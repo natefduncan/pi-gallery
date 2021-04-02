@@ -95,7 +95,7 @@ def image_loop(delay=5):
     print("PIL to canvas")
     PIL_to_canvas(img)
     print("After")
-    tk.after(delay*1000, image_loop)
+    root.after(delay*1000, image_loop)
 
 if __name__=="__main__":
     root = tk.Tk()
