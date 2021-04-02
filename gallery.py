@@ -87,9 +87,10 @@ def image_loop(delay=5):
         img = img.rotate(270, Image.NEAREST, expand = 1)
         print("PIL to canvas")
         PIL_to_canvas(img)
-        canvas.update()
         print("After")
+        canvas.update()
         canvas.after(delay*1000, image_loop)
+        canvas.update()
     except KeyboardInterrupt: 
         quit()
 
