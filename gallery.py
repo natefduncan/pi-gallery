@@ -113,7 +113,8 @@ class SlideShow:
             ratio = min(w/imgWidth, h/imgHeight)
             imgWidth = int(imgWidth*ratio)
             imgHeight = int(imgHeight*ratio)
-            pilImage = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
+            img = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
+        img.save("temp.jpg")
         image = tk.PhotoImage("temp.jpg")
         imagesprite = canvas.create_image(w/2,h/2,image=image)        
         root.imagesprite = imagesprite #garbage collection
