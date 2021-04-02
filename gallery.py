@@ -114,8 +114,9 @@ class SlideShow:
             imgWidth = int(imgWidth*ratio)
             imgHeight = int(imgHeight*ratio)
             pilImage = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
-        image = ImageTk.PhotoImage(img)
+        image = tk.PhotoImage("temp.jpg")
         imagesprite = canvas.create_image(w/2,h/2,image=image)        
+        root.imagesprite = imagesprite #garbage collection
         #canvas.after(delay*1000, self.showImage) 
        
 if __name__=="__main__":
@@ -129,7 +130,7 @@ if __name__=="__main__":
 
     canvas = tk.Canvas(root,width=w,height=h)
     canvas.pack()
-    canvas.configure(background='black')
+    canvas.configure(background='black', highlightthickness=0)
 
     slideShow = SlideShow()
     slideShow.showImage()
