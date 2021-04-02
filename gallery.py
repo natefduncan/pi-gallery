@@ -22,7 +22,8 @@ class HiddenRoot(tk.Tk):
         #hackish way, essentially makes root window
         #as small as possible but still "focused"
         #enabling us to use the binding on <esc>
-        self.wm_geometry("0x0+0+0")
+        self.w, self.h = self.winfo_screenwidth(), root.winfo_screenheight()
+        self.geometry("%dx%d+0+0" % (w, h))
 
         self.window = MySlideShow(self)
         self.window.startSlideShow()
@@ -44,22 +45,6 @@ class MySlideShow(tk.Toplevel):
         self.label = tk.Label(self)
         self.label.pack(side="top", fill="both", expand=True)
 
-    def getImages(self):
-        '''
-        Get image directory from command line or use current directory
-        '''
-        if len(sys.argv) == 2:
-            curr_dir = sys.argv[1]
-        else:
-            curr_dir = '.'
-
-        for root, dirs, files in os.walk(curr_dir):
-            for f in files:
-                if f.endswith(".png") or f.endswith(".jpg"):
-                    img_path = os.path.join(root, f)
-                    print(img_path)
-                    self.imageList.append(img_path)
-
     def startSlideShow(self, delay=10): #delay in seconds
         img = get_image()
         img = img.rotate(270, Image.NEAREST, expand = 1)
@@ -68,19 +53,21 @@ class MySlideShow(tk.Toplevel):
         self.after(delay*1000, self.startSlideShow)
 
     def showImage(self, image):
-        img_w, img_h = image.size
-        scr_w, scr_h = self.winfo_screenwidth(), self.winfo_screenheight()
-        width, height = min(scr_w, img_w), min(scr_h, img_h)
-        image.thumbnail((width, height), Image.ANTIALIAS)
-
-        #set window size after scaling the original image up/down to fit screen
-        #removes the border on the image
-        scaled_w, scaled_h = image.size
-        self.wm_geometry("{}x{}+{}+{}".format(scaled_w,scaled_h,0,0))
+        #Canvas
+        self.focus_set()
+        self.canvas = tkinter.Canvas(self, width=self.w, height=self.h)
+        self.canvas.pack()
+        self.canvas.configure(background='black')
         
         # create new image 
-        self.persistent_image = ImageTk.PhotoImage(image)
-        self.label.configure(image=self.persistent_image)
+        imgWidth, imgHeight = image.size
+        if imgWidth > w or imgHeight > h:
+            ratio = min(w/imgWidth, h/imgHeight)
+            imgWidth = int(imgWidth*ratio)
+            imgHeight = int(imgHeight*ratio)
+            pilImage = image.resize((imgWidth,imgHeight), Image.ANTIALIAS)
+        image = ImageTk.PhotoImage(image)
+        imagesprite = self.canvas.create_image(w/2,h/2,image=image)
 
 def create_canvas():
     root = tkinter.Tk()
