@@ -56,9 +56,9 @@ class MySlideShow(tk.Toplevel):
     def showImage(self, image):
         #Canvas
         self.focus_set()
-        self.canvas = tk.Canvas(self, width=self.w, height=self.h)
-        self.canvas.pack()
-        self.canvas.configure(background='black')
+        canvas = tk.Canvas(self, width=self.w, height=self.h)
+        canvas.pack()
+        canvas.configure(background='black')
         
         # create new image 
         imgWidth, imgHeight = image.size
@@ -68,7 +68,7 @@ class MySlideShow(tk.Toplevel):
             imgHeight = int(imgHeight*ratio)
             pilImage = image.resize((imgWidth,imgHeight), Image.ANTIALIAS)
         image = ImageTk.PhotoImage(image)
-        imagesprite = self.canvas.create_image(self.w/2,self.h/2,image=image)
+        imagesprite = canvas.create_image(self.w/2,self.h/2,image=image)
 
 def create_canvas():
     root = tkinter.Tk()
