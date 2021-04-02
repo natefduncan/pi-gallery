@@ -79,7 +79,6 @@ def PIL_to_canvas(pilImage):
         pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(w/2,h/2,image=image)
-    canvas.update()
 
 def image_loop(delay=5):
     try:
@@ -88,31 +87,12 @@ def image_loop(delay=5):
         img = img.rotate(270, Image.NEAREST, expand = 1)
         print("PIL to canvas")
         PIL_to_canvas(img)
+        canvas.update()
         print("After")
         canvas.after(delay*1000, image_loop)
     except KeyboardInterrupt: 
         quit()
 
-class SlideShow:
-
-    def __init__(self):
-        pass
-
-    def showImage(self, delay=5):
-        img = get_image()
-        img = img.rotate(270, Image.NEAREST, expand = 1)
-        imgWidth, imgHeight = img.size
-        if imgWidth > w or imgHeight > h:
-            ratio = min(w/imgWidth, h/imgHeight)
-            imgWidth = int(imgWidth*ratio)
-            imgHeight = int(imgHeight*ratio)
-            img = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
-        img.save("temp.jpg")
-        image = tk.PhotoImage("temp.jpg")
-        imagesprite = canvas.create_image(w/2,h/2,image=image)        
-        canvas.imagesprite = imagesprite #garbage collection
-        canvas.after(delay*1000, self.showImage) 
-       
 if __name__=="__main__":
     root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
