@@ -133,8 +133,7 @@ if __name__=="__main__":
     canvas.pack()
     canvas.configure(background='black', highlightthickness=0)
 
-    slideShow = SlideShow()
-    slideShow.showImage()
+    image_loop()
     root.mainloop()
 
     '''
