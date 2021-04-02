@@ -89,18 +89,13 @@ def PIL_to_canvas(pilImage):
     imagesprite = canvas.create_image(w/2,h/2,image=image)
 
 def image_loop(delay=5):
-    try:
-        print("Getting image")
-        img = get_image()
-        img = img.rotate(270, Image.NEAREST, expand = 1)
-        print("PIL to canvas")
-        PIL_to_canvas(root, img)
-        print("After")
-        tk.after(delay*1000, image_loop)
-    except KeyboardInterrupt:
-        break
-    except Exception as e:
-        print(e)
+    print("Getting image")
+    img = get_image()
+    img = img.rotate(270, Image.NEAREST, expand = 1)
+    print("PIL to canvas")
+    PIL_to_canvas(root, img)
+    print("After")
+    tk.after(delay*1000, image_loop)
 
 if __name__=="__main__":
     root = tk.Tk()
