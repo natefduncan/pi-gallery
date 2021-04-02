@@ -101,8 +101,6 @@ def image_loop(delay=5):
         quit()
 
 class SlideShow:
-    def __init__(self, canvas):
-        self.canvas = canvas
 
     def showImage(self, delay=5):
         img = get_image()
@@ -114,8 +112,8 @@ class SlideShow:
             imgHeight = int(imgHeight*ratio)
             pilImage = img.resize((imgWidth,imgHeight), Image.ANTIALIAS)
         image = ImageTk.PhotoImage(img)
-        imagesprite = self.canvas.create_image(w/2,h/2,image=image)        
-        #self.canvas.after(delay*1000, self.showImage) 
+        imagesprite = canvas.create_image(w/2,h/2,image=image)        
+        #canvas.after(delay*1000, self.showImage) 
        
 if __name__=="__main__":
     root = tk.Tk()
