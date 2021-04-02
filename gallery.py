@@ -70,7 +70,7 @@ class MySlideShow(tk.Toplevel):
         image = ImageTk.PhotoImage(image)
         imagesprite = canvas.create_image(self.w/2,self.h/2,image=image)
 
-def create_canvas():
+def PIL_to_canvas(pilImage):
     root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
     root.overrideredirect(1)
@@ -80,9 +80,6 @@ def create_canvas():
     canvas = tk.Canvas(root,width=w,height=h)
     canvas.pack()
     canvas.configure(background='black')
-    return [canvas, w, h]
-
-def PIL_to_canvas(pilImage, canvas, w, h):
     imgWidth, imgHeight = pilImage.size
     if imgWidth > w or imgHeight > h:
         ratio = min(w/imgWidth, h/imgHeight)
@@ -91,10 +88,9 @@ def PIL_to_canvas(pilImage, canvas, w, h):
         pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(w/2,h/2,image=image)
+    root.mainloop()
 
 def image_loop():
-    canvas, w, h = create_canvas()
-    print("Create canvas")
     while True:
         try:
             print("Getting image")
