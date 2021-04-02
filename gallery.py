@@ -94,14 +94,20 @@ def PIL_to_canvas(pilImage, canvas, w, h):
 
 def image_loop():
     canvas, w, h = create_canvas()
+    print("Create canvas")
     while True:
         try:
+            print("Getting image")
             img = get_image()
             img = img.rotate(270, Image.NEAREST, expand = 1)
+            print("PIL to canvas")
             PIL_to_canvas(img, canvas, w, h)
+            print("Sleep for 5.")
             time.sleep(5)
         except KeyboardInterrupt:
             break
+        except Exception as e:
+            print(e)
 
 if __name__=="__main__":
     image_loop()
