@@ -89,17 +89,49 @@ def PIL_to_canvas(pilImage):
     imagesprite = canvas.create_image(w/2,h/2,image=image)
 
 def image_loop(delay=5):
-    print("Getting image")
-    img = get_image()
-    img = img.rotate(270, Image.NEAREST, expand = 1)
-    print("PIL to canvas")
-    PIL_to_canvas(img)
-    print("After")
-    root.after(delay*1000, image_loop)
+    try:
+        print("Getting image")
+        img = get_image()
+        img = img.rotate(270, Image.NEAREST, expand = 1)
+        print("PIL to canvas")
+        PIL_to_canvas(img)
+        print("After")
+        root.after(delay*1000, image_loop)
+    except KeyboardInterrupt: 
+        quit()
 
+class SlideShow:
+    def __init__(self, canvas):
+        self.canvas = canvas
+
+    def showImage(self, delay=5):
+        img = get_image()
+        img = img.rotate(270, Image.NEAREST, expand = 1)
+        imgWidth, imgHeight = pilImage.size
+        if imgWidth > w or imgHeight > h:
+            ratio = min(w/imgWidth, h/imgHeight)
+            imgWidth = int(imgWidth*ratio)
+            imgHeight = int(imgHeight*ratio)
+            pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
+        image = ImageTk.PhotoImage(pilImage)
+        imagesprite = canvas.create_image(w/2,h/2,image=image)        
+        self.canvas.after(delay*1000, self.showImage) 
+       
 if __name__=="__main__":
+    '''
     root = tk.Tk()
     image_loop()
+    root.mainloop()
+    '''
+    root = tk.Tk()
+    w, h = root.winfo_screenwidth(), root.winfo_screenheight()
+
+    canvas = tk.Canvas(root,width=w,height=h)
+    canvas.pack()
+    canvas.configure(background='black')
+
+    slideShow = SlideShow(canvas)
+    slideShow.showImage()
     root.mainloop()
 
     '''
