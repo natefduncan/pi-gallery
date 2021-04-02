@@ -71,14 +71,6 @@ class MySlideShow(tk.Toplevel):
         imagesprite = canvas.create_image(self.w/2,self.h/2,image=image)
 
 def PIL_to_canvas(pilImage):
-    w, h = root.winfo_screenwidth(), root.winfo_screenheight()
-    root.overrideredirect(1)
-    root.geometry("%dx%d+0+0" % (w, h))
-    root.focus_set()    
-    root.bind("<Escape>", lambda e: (e.widget.withdraw(), e.widget.quit()))
-    canvas = tk.Canvas(root,width=w,height=h)
-    canvas.pack()
-    canvas.configure(background='black')
     imgWidth, imgHeight = pilImage.size
     if imgWidth > w or imgHeight > h:
         ratio = min(w/imgWidth, h/imgHeight)
