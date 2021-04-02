@@ -71,7 +71,7 @@ class MySlideShow(tk.Toplevel):
         imagesprite = canvas.create_image(self.w/2,self.h/2,image=image)
 
 def create_canvas():
-    root = tkinter.Tk()
+    root = tk.Tk()
     w, h = root.winfo_screenwidth(), root.winfo_screenheight()
     root.overrideredirect(1)
     root.geometry("%dx%d+0+0" % (w, h))
