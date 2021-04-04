@@ -13,7 +13,7 @@ while :
         sudo fbi -a -noverbose -T 1 -t ${DELAY} --cachemem 0 current.jpg & 
         curl -o temp.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo && 
         cp temp.jpg current.jpg && 
-        sleep ${DELAY} && 
+        sleep ${DELAY}
     done
 trap - INT
 
