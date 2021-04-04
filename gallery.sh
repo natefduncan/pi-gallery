@@ -5,7 +5,7 @@ SERVER_PORT=8888
 DELAY=5
 
 #Start slideshow
-fbi -a -T 1 static/tmp.jpg -noverbose -T 1 -t ${DELAY} --cachemem 0 temp &
+fbi -a -T 1 static/tmp.jpg -noverbose -T 1 -t ${DELAY} --cachemem 0 temp.jpg &&
 
 #Update temp.jpg file on loop
 trap break INT
