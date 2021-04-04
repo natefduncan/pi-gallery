@@ -3,6 +3,7 @@ import tkinter as tk
 import requests as r
 import time
 from nextcloud import get_random_photo_path
+import traceback
 from config import SERVER_ADDRESS, SERVER_PORT
 
 def get_image():
@@ -41,7 +42,10 @@ def image_loop(delay=1):
     except KeyboardInterrupt: 
         quit()
     except Exception as e:
+        print("ERROR")
+        traceback.print_exc()
         print(e)
+        quit()
 
 if __name__=="__main__":
     root = tk.Tk()
