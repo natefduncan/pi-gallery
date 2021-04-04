@@ -40,6 +40,7 @@ def image_loop(delay=1):
         print("Reloop")
         image_loop()
     except KeyboardInterrupt: 
+        print("KEYBOARD INTERRUPT")
         quit()
     except Exception as e:
         print("ERROR")
