@@ -28,7 +28,7 @@ def PIL_to_canvas(pilImage):
         pilImage = pilImage.resize((imgWidth,imgHeight), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(pilImage)
     imagesprite = canvas.create_image(w/2,h/2,image=image)
-    canvas.update()
+    #canvas.update()
 
 def image_loop(delay=1):
     try:
