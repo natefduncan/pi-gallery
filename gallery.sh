@@ -10,8 +10,9 @@ DELAY=5
 trap break INT
 while :
     do
-        sudo fbi -a -noverbose -T 1 --cachemem 0 temp.jpg &
-        curl -o temp.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo &
+        sudo fbi -a -noverbose -T 1 --cachemem 0 current.jpg & 
+        curl -o temp.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
+        cp temp.jpg current.jpg
         sleep ${DELAY} 
     done
 trap - INT
