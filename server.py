@@ -1,12 +1,14 @@
-from flask import Flask, send_file  
 import io
-
-app = Flask(__name__)
-
+import os
 import random
 
-from config import SERVER_PORT
+from dotenv import load_dotenv
+from flask import Flask, send_file
+
 from nextcloud import get_random_photo_path
+
+load_dotenv()
+app = Flask(__name__)
 
 
 @app.route("/random-photo")
@@ -17,5 +19,6 @@ def gallery():
         as_attachment=True,
     )
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=SERVER_PORT)
+    app.run(host="0.0.0.0", port=os.getenv("SERVER_PORT"))
