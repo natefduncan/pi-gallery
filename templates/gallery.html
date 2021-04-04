@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slideshow</title>
+    <link rel="stylesheet" type="text/css" href="gallery.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>  
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+
+        body {
+            background-color : black; 
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="imgbox">
+        <img class="center-fit" src='static/temp.jpg'>
+    </div>
+  </body>
+
+  <script>
+    $( document ).ready(function() {
+        setTimeout(function(){
+            location.reload();
+        }, {{delay | safe}} * 1000);
+    });
+  </script>
+</html>
