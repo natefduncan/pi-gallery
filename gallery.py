@@ -5,6 +5,8 @@ import time
 from nextcloud import get_random_photo_path
 import traceback
 from config import SERVER_ADDRESS, SERVER_PORT
+import gc
+
 
 def get_image():
     url = f"http://{SERVER_ADDRESS}:{SERVER_PORT}/random-photo"
@@ -38,6 +40,7 @@ def image_loop(delay=1):
         print("Canvas wait")
         canvas.after(delay*1000)
         print("Reloop")
+        gc.collect()
         image_loop()
     except KeyboardInterrupt: 
         print("KEYBOARD INTERRUPT")
