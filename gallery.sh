@@ -5,8 +5,8 @@ SERVER_PORT=8888
 DELAY=5
 
 #Check photos folder has enough files
-photo_count=ls -l photos | grep -v ^d | wc -l
-download_photos=$(( 5 - photo_count - 1))
+photo_count=ls photos | grep -v ^d | wc -l
+download_photos=$(( 5 - photo_count ))
 
 for photo in $( seq 1 $download_photos )
 do
@@ -27,5 +27,6 @@ while :
             new_sleep = $(( DELAY - duration ))
             sleep ${new_sleep}
         done
+done
 trap - INT
 
