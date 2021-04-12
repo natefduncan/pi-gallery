@@ -8,6 +8,9 @@ DELAY=5
 photo_count=ls photos | grep -v ^d | wc -l
 download_photos=$(( 5 - photo_count ))
 
+echo ${photo_count}
+echo ${download_photos}
+
 for photo in $( seq 1 $download_photos )
 do
     curl -N -o ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
