@@ -12,7 +12,7 @@ def autorotate(path):
     try:
         exif = image._getexif()
     except AttributeError as e:
-        print "Could not get exif - Bad image!"
+        print("Could not get exif - Bad image!")
         return False
 
     (width, height) = image.size
@@ -34,15 +34,15 @@ def autorotate(path):
             if orientation in rotate_values:
                 # Rotate and save the picture
                 image = image.rotate(rotate_values[orientation])
-                image.save(path, quality=100, exif=str(exif))
+                image.save(path, quality=100, exif=exif)
                 return True
         else:
             if width > height:
                 image = image.rotate(90)
-                image.save(path, quality=100, exif=str(exif))
+                image.save(path, quality=100, exif=exif)
                 return True
 
     return False
 
 if __name__=="__main__":
-    autorotate(sys.argv[0])
+    autorotate(sys.argv[1])
