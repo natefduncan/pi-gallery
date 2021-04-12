@@ -20,7 +20,7 @@ done
 #Start slideshow
 trap break INT
 sudo fbi -a -noverbose -T 1 -t ${DELAY} --cachemem 0 photos/*jpg & #Start FBI
-sleep ${DELAY} #Sleep so it can move to next photo before trying to overwrite. 
+sleep $DELAY #Sleep so it can move to next photo before trying to overwrite. 
 while :
 do
     for counter in {1..5}
