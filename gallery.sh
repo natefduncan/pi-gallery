@@ -29,7 +29,7 @@ do
         curl -N -o ./photos/temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo 
         duration=$(( SECONDS - start ))
         new_sleep = $(( DELAY - duration ))
-        sleep ${new_sleep}
+        sleep $new_sleep; 
     done
 done
 trap - INT
