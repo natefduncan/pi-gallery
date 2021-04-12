@@ -8,12 +8,13 @@ DELAY=5
 
 #Update temp.jpg file on loop
 trap break INT
+sudo fbi -a -noverbose -T 1 -t ${DELAY} --cachemem 0 photos/ & 
+sleep ${DELAY}
 while :
-    do
-        sudo fbi -a -noverbose -T 1 -t ${DELAY} --cachemem 0 current.jpg & 
-        curl -o temp.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo && 
-        cp temp.jpg current.jpg && 
-        sleep ${DELAY}
-    done
+    for counter in {1..10}
+        do
+            curl -o /temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo && 
+            sleep ${DELAY}
+        done
 trap - INT
 
