@@ -5,7 +5,7 @@ SERVER_PORT=8888
 DELAY=5
 
 #Check photos folder has enough files
-photo_count=ls photos | grep -v ^d | wc -l
+photo_count=ls ./photos | wc -l
 download_photos=$(( 5 - photo_count ))
 
 echo ${photo_count}

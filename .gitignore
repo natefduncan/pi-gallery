@@ -2,3 +2,4 @@
 config.py
 temp.jpg
 /__pycache__/
+/photos/
