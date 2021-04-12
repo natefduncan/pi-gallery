@@ -10,7 +10,7 @@ download_photos=$(( 5 - photo_count - 1))
 
 for photo in $( seq 1 $download_photos )
 do
-    curl -o -N ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
+    curl -N -o ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
     echo "Adding temp${photo}.jpg"
 done
 
@@ -22,7 +22,7 @@ while :
     for counter in {1..5}
         do
             start=$SECONDS
-            curl -o -N ./photos/temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo 
+            curl -N -o ./photos/temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo 
             duration=$(( SECONDS - start ))
             new_sleep = $(( DELAY - duration ))
             sleep ${new_sleep}
