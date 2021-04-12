@@ -5,7 +5,7 @@ SERVER_PORT=8888
 DELAY=5
 
 #Check photos folder has enough files
-cd .photos
+cd ./photos
 photo_count=ls | wc -l
 download_photos=$(( 5 - photo_count ))
 cd ..
