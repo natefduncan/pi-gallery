@@ -16,7 +16,6 @@ echo ${download_photos}
 for photo in $( seq 1 $download_photos )
 do
     curl -o ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
-    jpegtran -rot 90 ./photos/temp${photo}.jpg > ./photos/temp${photo}.jpg
     echo "Adding temp${photo}.jpg"
 done
 
@@ -30,7 +29,6 @@ do
     do
         start=$SECONDS
         curl -o ./photos/temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo 
-        jpegtran -rot 90 -trim ./photos/temp${counter}.jpg > ./photos/temp${counter}.jpg
         duration=$(( SECONDS - start ))
         new_sleep=$(( DELAY - duration ))
         if (( $new_sleep > 0 ))
