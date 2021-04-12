@@ -33,7 +33,7 @@ do
         jpegtran -rot 90 -trim ./photos/temp${counter}.jpg > ./photos/temp${counter}.jpg
         duration=$(( SECONDS - start ))
         new_sleep=$(( DELAY - duration ))
-        if $((new_sleep > 0))
+        if (( $new_sleep > 0 ))
         then
             sleep $new_sleep
         fi
