@@ -5,15 +5,18 @@ SERVER_PORT=8888
 DELAY=5
 
 #Check photos folder has enough files
-photo_count=ls ./photos | wc -l
-download_photos=$(( 10 - photo_count ))
+cd .photos
+photo_count=ls | wc -l
+download_photos=$(( 5 - photo_count ))
+cd ..
 
 echo ${photo_count}
 echo ${download_photos}
 
 for photo in $( seq 1 $download_photos )
 do
-    curl -N -o ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
+    curl -o ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
+    jpegtran -rot 90 -trim ./photos/temp${photo}.jpg > ./photos/temp${photo}.jpg
     echo "Adding temp${photo}.jpg"
 done
 
@@ -23,14 +26,17 @@ sudo fbi -a -noverbose -T 1 -t ${DELAY} --cachemem 0 photos/*jpg & #Start FBI
 sleep $DELAY #Sleep so it can move to next photo before trying to overwrite. 
 while :
 do
-    for counter in {1..10}
+    for counter in {1..5}
     do
         start=$SECONDS
-        curl -N -o ./photos/temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo 
+        curl -o ./photos/temp${counter}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo 
         jpegtran -rot 90 -trim ./photos/temp${counter}.jpg > ./photos/temp${counter}.jpg
         duration=$(( SECONDS - start ))
         new_sleep=$(( DELAY - duration ))
-        sleep $new_sleep; 
+        if $((new_sleep > 0))
+        then
+            sleep $new_sleep
+        fi
     done
 done
 trap - INT
