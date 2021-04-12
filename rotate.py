@@ -45,4 +45,4 @@ def autorotate(path):
     return False
 
 if __name__=="__main__":
-    autorotate(file_path(sys.argv[0]))
+    autorotate(sys.argv[0])
