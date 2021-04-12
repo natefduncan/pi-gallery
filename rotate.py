@@ -45,4 +45,4 @@ def autorotate(path):
     return False
 
 if __name__=="__main__":
-    autorotate(sys.argv[1])
+    rotate_and_save(sys.argv[1])
