@@ -16,7 +16,7 @@ echo ${download_photos}
 for photo in $( seq 1 $download_photos )
 do
     curl -o ./photos/temp${photo}.jpg http://${SERVER_ADDRESS}:${SERVER_PORT}/random-photo
-    jpegtran -rot 90 -trim ./photos/temp${photo}.jpg > ./photos/temp${photo}.jpg
+    jpegtran -rot 90 ./photos/temp${photo}.jpg > ./photos/temp${photo}.jpg
     echo "Adding temp${photo}.jpg"
 done
 
