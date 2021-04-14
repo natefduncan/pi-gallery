@@ -15,3 +15,4 @@ Bash photo gallery using feh and nextcloud server.
 - May need to also install libcurl: `sudo apt-get install libcurl`
 - Start gallery: `source ./gallery.sh`
 
+You can install `xscreensaver` to disable sleep. 
