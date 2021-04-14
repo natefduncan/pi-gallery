@@ -1,11 +1,14 @@
+import glob
 import os
+import random
 
 from dotenv import load_dotenv
+from PIL import Image
+
+from rotate import autorotate
 
 load_dotenv()
 
-import glob
-import random
 
 
 def get_random_photo_path():
@@ -16,5 +19,7 @@ def get_random_photo_path():
     print(os.path.join(PHOTO_DIR, random_file))
     return os.path.join(PHOTO_DIR, random_file)
 
-def get_all_photo_paths():
-    return [os.path.join(PHOTO_DIR, filepath) for filepath in glob.glob(os.getenv("PHOTO_DIR") + "/*.jpg", recursive=True)]
+
+def get_random_PIL():
+    path = get_random_photo_path()
+    return autorotate(Image(path))
