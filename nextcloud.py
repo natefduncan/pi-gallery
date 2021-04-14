@@ -22,4 +22,5 @@ def get_random_photo_path():
 
 def get_random_PIL():
     path = get_random_photo_path()
-    return autorotate(Image(path))
+    img = Image.open(path)
+    return autorotate(img)
