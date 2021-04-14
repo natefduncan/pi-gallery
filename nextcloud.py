@@ -15,3 +15,6 @@ def get_random_photo_path():
     print(f"Selected Photo: {random_file}")
     print(os.path.join(PHOTO_DIR, random_file))
     return os.path.join(PHOTO_DIR, random_file)
+
+def get_all_photo_paths():
+    return [os.path.join(PHOTO_DIR, filepath) for filepath in glob.glob(os.getenv("PHOTO_DIR") + "/*.jpg", recursive=True)]
