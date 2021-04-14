@@ -8,7 +8,7 @@ def rotate_and_save(file_path):
     rot_image = og_image.rotate(270)
     rot_image.save(file_path)
 
-def autorotate(image)
+def autorotate(image):
     try:
         for orientation in ExifTags.TAGS.keys():
             if ExifTags.TAGS[orientation]=='Orientation':
