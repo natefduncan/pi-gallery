@@ -1,12 +1,4 @@
-import sys
-
 from PIL import ExifTags, Image
-
-
-def rotate_and_save(file_path):
-    og_image = Image.open(file_path)
-    rot_image = og_image.rotate(270)
-    rot_image.save(file_path)
 
 def autorotate(image):
     try:
@@ -27,5 +19,3 @@ def autorotate(image):
         pass
     return image
 
-if __name__=="__main__":
-    rotate_and_save(sys.argv[1])
